@@ -1,0 +1,98 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* NGO color palette - brown and white tones only */
+  --primary-text: #3b2f2f;
+  --accent-brown: #5c4033;
+  --card-bg: #f5ede3;
+  --page-bg: #ffffff;
+
+  /* Semantic tokens */
+  --background: oklch(1 0 0);
+  --foreground: #3b2f2f;
+  --card: #f5ede3;
+  --card-foreground: #3b2f2f;
+  --primary: #3b2f2f;
+  --primary-foreground: oklch(1 0 0);
+  --accent: #5c4033;
+  --muted: #d4c9bd;
+  --muted-foreground: #7a6b63;
+  --border: #e8dfd5;
+  --input: #f5ede3;
+  --ring: #5c4033;
+}
+
+.dark {
+  --background: #2a2420;
+  --foreground: #f5ede3;
+  --card: #3b3230;
+  --card-foreground: #f5ede3;
+  --primary: #e8dfd5;
+  --accent: #d4c9bd;
+  --muted: #5c4033;
+  --muted-foreground: #b8a99e;
+  --border: #4a4238;
+  --input: #3b3230;
+  --ring: #d4c9bd;
+}
+
+@theme inline {
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-serif: "Georgia", "Times New Roman", serif;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-accent: var(--accent);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply text-primary;
+  }
+
+  /* Newsletter serif heading style */
+  .serif-heading {
+    @apply font-serif font-bold text-primary;
+  }
+}
+
+/* Utility classes */
+.container-mobile {
+  @apply w-full max-w-full px-4 py-6;
+}
+
+.btn-primary {
+  @apply inline-flex items-center justify-center rounded-lg bg-primary text-primary-foreground px-6 py-3 font-medium hover:bg-accent transition-colors;
+}
+
+.btn-secondary {
+  @apply inline-flex items-center justify-center rounded-lg border-2 border-primary text-primary px-6 py-3 font-medium hover:bg-card;
+}
+
+.card-minimal {
+  @apply bg-card text-card-foreground rounded-lg p-6 border border-border;
+}
