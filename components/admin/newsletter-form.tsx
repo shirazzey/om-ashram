@@ -4,7 +4,6 @@ import type React from "react"
 
 import { useState } from "react"
 import type { NewsletterPost } from "@/lib/types"
-import { FileUpload } from "@/components/file-upload"
 
 interface NewsletterFormProps {
   initial?: NewsletterPost
@@ -91,13 +90,17 @@ export function NewsletterForm({ initial, onSubmit, isLoading }: NewsletterFormP
         />
       </div>
 
+      {/* FIXED PHOTO INPUT */}
       <div>
-        <label className="block text-sm font-medium text-primary mb-2">Newsletter Photo *</label>
-        <FileUpload
-          prefix="newsletter"
-          preview={formData.photo_url}
-          isLoading={isLoading}
-          onUpload={(url) => setFormData({ ...formData, photo_url: url })}
+        <label className="block text-sm font-medium text-primary mb-2">Photo URL *</label>
+        <input
+          type="text"
+          value={formData.photo_url}
+          onChange={(e) => setFormData({ ...formData, photo_url: e.target.value })}
+          className="w-full px-4 py-2 border border-border rounded-lg bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-accent"
+          placeholder="https://example.com/image.jpg"
+          required
+          disabled={isLoading}
         />
       </div>
 
